@@ -79,6 +79,13 @@ public class OneRepMax {
 	public void setPowerCleanMax(Double powerCleanMax) {
 		this.powerCleanMax = powerCleanMax;
 	}
+
+	@Override
+	public String toString() {
+		return "OneRepMax [id=" + id + ", benchPressMax=" + benchPressMax + ", squatMax=" + squatMax
+				+ ", overHeadPressMax=" + overHeadPressMax + ", deadliftMax=" + deadliftMax + ", powerCleanMax="
+				+ powerCleanMax + "]";
+	}
 	
 }
 

@@ -82,6 +82,12 @@ public class Plan {
 	public void setOrmId(OneRepMax ormId) {
 		this.ormId = ormId;
 	}
+
+	@Override
+	public String toString() {
+		return "Plan [id=" + id + ", name=" + name + ", planStart=" + planStart + ", planEnd=" + planEnd + ", ormId="
+				+ ormId + "]";
+	}
 	
 	
 }

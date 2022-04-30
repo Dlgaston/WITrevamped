@@ -51,13 +51,10 @@ public class UserController {
 		return new ResponseEntity<>(userService.getAccount(id), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/account-update", method = RequestMethod.POST)
+	@RequestMapping(value = "/account-update/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<User> updateAccount(@RequestBody User account) {
+	public ResponseEntity<User> updateAccount(@PathVariable("id") User account) {
 
-		if (account.getId() == null) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
 		return new ResponseEntity<>(userService.handleUpdateAccount(account), HttpStatus.OK);
 	}
 	@RequestMapping(value = "/account-delete", method = RequestMethod.DELETE)

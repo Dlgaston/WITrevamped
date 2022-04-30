@@ -3,9 +3,11 @@ package com.capstone.controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,11 +44,11 @@ public class PlanController {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:3000")
-	@RequestMapping(value = "/create531/{id}",
+	@RequestMapping(value = "/createPlan/{id}",
 	method = RequestMethod.POST)
-	public ResponseEntity<Plan> FiveThreeOne(@RequestBody Plan plan, @PathVariable("id") Long id) {
-		Plan fiveThreeOne = planService.FiveThreeOne(id);
-		return new ResponseEntity<>(fiveThreeOne, HttpStatus.OK);
+	public ResponseEntity<Plan> CreatePlan(@RequestBody Plan plan, @PathVariable("id") Long id) {
+		Plan newPlan = planService.createPlan(id, plan);
+		return new ResponseEntity<>(newPlan, HttpStatus.OK);
 	}
 	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value = "/planHistory/{id}",
@@ -82,6 +84,18 @@ public class PlanController {
 		return new ResponseEntity<>(currentPlan, HttpStatus.OK);
 		
 	}
-	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@RequestMapping(value = "/findSpecificPlan/{id}",
+	method = RequestMethod.GET)
+	public ResponseEntity<Plan> SpecificPlan(@PathVariable("id")Long id){
+		Optional<Plan> specificPlan = planRepo.findById(id);
+				
+		if(specificPlan != null) {
+			Plan setPlan = specificPlan.get();
+		return new ResponseEntity<>(setPlan, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+	}
 	
 }

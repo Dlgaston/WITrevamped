@@ -53,14 +53,14 @@ public class UserController {
 	
 	@RequestMapping(value = "/account-update/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<User> updateAccount(@PathVariable("id") User account) {
+	public ResponseEntity<User> updateAccount(@PathVariable("id") Long id, @RequestBody User account) {
 
-		return new ResponseEntity<>(userService.handleUpdateAccount(account), HttpStatus.OK);
+		return new ResponseEntity<>(userService.handleUpdateAccount(id, account), HttpStatus.OK);
 	}
 	@RequestMapping(value = "/account-delete", method = RequestMethod.DELETE)
 	@ResponseBody
 	public ResponseEntity<User> deleteAccount(@RequestBody User account) {
-
+			System.out.println();
 		userRepo.delete(account);
 		return new ResponseEntity<>(HttpStatus.OK);
 

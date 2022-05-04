@@ -31,11 +31,9 @@ public class PlanService {
 	public Plan createPlan(Long id, Plan plan) {
 		User account = userService.getAccount(id);
 		Plan newPlan = plan;
-		System.out.println(plan);
 		plan.setPlanStart(LocalDate.now());
-		account.getPlan().add(newPlan);
-		ormRepo.save(plan.getOrmId());
 		planRepo.save(newPlan);
+		account.getPlan().add(newPlan);
 		userRepo.save(account);
 		return newPlan;
 	}

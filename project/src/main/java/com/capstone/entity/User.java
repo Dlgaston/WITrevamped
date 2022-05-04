@@ -34,6 +34,7 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_id")
 	private List<Plan> plan;
+	
 	public User() {
 		
 	}
@@ -95,10 +96,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-
-	
-
+		
 	public List<Plan> getPlan() {
 		return plan;
 	}

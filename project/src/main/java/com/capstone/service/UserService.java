@@ -17,15 +17,15 @@ public class UserService {
 	public User getAccount(Long id) {
 		Optional<User> getAccount = userRepo.findById(id);
 		if (getAccount.isPresent()) {
-			User accountFound = getAccount.get();
-			return userRepo.save(accountFound);
+			User userObject = getAccount.get();
+			return userObject;
 		}
 		return null;
 	
 }
 	
-	public User handleUpdateAccount(User account) {
-		Optional<User> updateAccount = userRepo.findById(account.getId());
+	public User handleUpdateAccount(Long id, User account) {
+		Optional<User> updateAccount = userRepo.findById(id);
 		if (updateAccount.isPresent()) {
 			User accountFound = updateAccount.get();
 			accountFound.setFirstName(account.getFirstName());

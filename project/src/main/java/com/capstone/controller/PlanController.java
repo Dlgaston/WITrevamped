@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.entity.Plan;
@@ -98,4 +99,43 @@ public class PlanController {
 		}
 	}
 	
+	@RequestMapping(value = "/deletePlan/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<User> deletePlan(@PathVariable("id") Long id) {
+			
+		planRepo.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "/deletePlans", consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces=MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<User> deletePlans(@RequestBody List<String> ids) {
+			ids.forEach(d->{
+				if(planRepo.existsById(Long.parseLong(d))) { 
+					planRepo.deleteById(Long.parseLong(d));
+				}
+			});
+		
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+
+	}
+	@CrossOrigin(origins = "http://localhost:3000")
+	@RequestMapping(value = "/addImage/{planID}", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Plan> addImage(@PathVariable("planID") Long id, @RequestBody Plan tempPlan) {
+		Optional<Plan> specificPlan = planRepo.findById(id);
+
+		if(specificPlan != null) {
+			Plan setPlan = specificPlan.get();
+			setPlan.setImage(tempPlan.getImage());
+			planRepo.save(setPlan);
+		return new ResponseEntity<>(setPlan, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+	}	
 }

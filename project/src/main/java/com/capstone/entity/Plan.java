@@ -29,7 +29,8 @@ public class Plan {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "orm_id")
 	private OneRepMax ormId;
-	
+	@Column(name ="image")
+	private String image;
 	public Plan() {
 		
 	}
@@ -81,6 +82,16 @@ public class Plan {
 
 	public void setOrmId(OneRepMax ormId) {
 		this.ormId = ormId;
+	}
+	
+	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

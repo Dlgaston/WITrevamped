@@ -34,7 +34,6 @@ public class UserController {
 	@RequestMapping(value = "/create-account", method = RequestMethod.POST)
 	public User handleCreateAccount(@RequestBody User account) {
 		userRepo.save(account);
-
 		return account;
 	}
 	@RequestMapping(value = "/login",

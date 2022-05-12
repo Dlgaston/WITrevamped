@@ -120,7 +120,6 @@ public class PlanController {
 		
 		
 		return new ResponseEntity<>(HttpStatus.OK);
-
 	}
 	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value = "/addImage/{planID}", method = RequestMethod.POST)

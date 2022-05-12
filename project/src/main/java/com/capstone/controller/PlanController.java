@@ -98,7 +98,7 @@ public class PlanController {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 	}
-	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value = "/deletePlan/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public ResponseEntity<User> deletePlan(@PathVariable("id") Long id) {
@@ -107,7 +107,7 @@ public class PlanController {
 		return new ResponseEntity<>(HttpStatus.OK);
 
 	}
-	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping(value = "/deletePlans", consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
 	@ResponseBody

@@ -134,7 +134,6 @@ public class PlanController {
 		return new ResponseEntity<>(setPlan, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		
+		}		
 	}	
 }

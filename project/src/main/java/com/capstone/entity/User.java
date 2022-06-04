@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "user")
@@ -21,14 +22,18 @@ public class User {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message = "First name can not be blank")
 	@Column(name = "first_name")
 	private String firstName;
+	@NotBlank(message = "Last name can not be blank")
 	@Column(name = "last_name")
 	private String lastName;
 	@Column(name = "username")
 	private String username;
+	@NotBlank(message = "Email can not be blank")
 	@Column(name = "email")
 	private String email;
+	@NotBlank(message = "Password can not be blank")
 	@Column(name = "password")
 	private String password;
 	@OneToMany(cascade = CascadeType.ALL)
